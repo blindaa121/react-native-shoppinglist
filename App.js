@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Alert } from 'react-native';
 import Header from './components/header';
 import ListItem from './components/listitem'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
+import AddItem from './components/AddItem'
 // Icon.loadFont();
-// import { uuid } from./ 'uuidv4';
+import { uuid } from 'uuidv4';
 
 const App = () => {
   const [items, setItems] = useState([
@@ -21,9 +21,21 @@ const App = () => {
     })
   }
 
+  const addItem = (text) => {
+    if (!text) {
+      Alert.alert('Error', 'Please enter an item', {text: 'Ok'});
+    } else {
+      setItems(prevItems => {
+        return [{id: Math.random(), text},...prevItems];
+      });
+    }
+   
+  }
+
   return (
     <View style={styles.container}>
       <Header title='Shopping List'/>
+      <AddItem  addItem={addItem}/>
       <FlatList data={items} renderItem={({item}) => <ListItem item={item} deleteItem={deleteItem} />} />
       {/* <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}/> */}
     </View>
