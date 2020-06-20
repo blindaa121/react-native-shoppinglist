@@ -1,15 +1,28 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Header from './components/header'
+import React, {useState} from 'react';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import Header from './components/header';
+// import { uuid } from 'uuidv4';
 
 const App = () => {
+  const [items, setItems] = useState([
+    {id: 1, text: 'Milk'},
+    {id: 2, text: 'Eggs'},
+    {id: 3, text: 'Bread'},
+    {id: 4, text: 'Turkey'},
+  ]);
+
   return (
     <View style={styles.container}>
-      <Header />
+      <Header title='Shopping List'/>
+      <FlatList />
       {/* <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}/> */}
     </View>
   )
 };
+
+Header.defaultProps = {
+  title: 'Shopping List'
+}
 
 const styles = StyleSheet.create({
   container: {
