@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Header from './components/header';
-// import { uuid } from 'uuidv4';
+import ListItem from './components/listitem'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
+Icon.loadFont();
+// import { uuid } from./ 'uuidv4';
 
 const App = () => {
   const [items, setItems] = useState([
@@ -14,7 +18,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Header title='Shopping List'/>
-      <FlatList />
+      <FlatList data={items} renderItem={({item}) => <ListItem item={item} />} />
       {/* <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}/> */}
     </View>
   )
