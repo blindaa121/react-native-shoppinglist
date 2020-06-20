@@ -4,7 +4,7 @@ import Header from './components/header';
 import ListItem from './components/listitem'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-Icon.loadFont();
+// Icon.loadFont();
 // import { uuid } from./ 'uuidv4';
 
 const App = () => {
@@ -15,10 +15,16 @@ const App = () => {
     {id: 4, text: 'Turkey'},
   ]);
 
+  const deleteItem = (id) => {
+    setItems(prevItems => {
+      return prevItems.filter(item => item.id != id)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <Header title='Shopping List'/>
-      <FlatList data={items} renderItem={({item}) => <ListItem item={item} />} />
+      <FlatList data={items} renderItem={({item}) => <ListItem item={item} deleteItem={deleteItem} />} />
       {/* <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}/> */}
     </View>
   )
